@@ -1,0 +1,117 @@
+
+// iterative specs 1-2
+var factorialIterative = function(num) {
+	var running_total=1
+	for (var i = num; i >= 1; i--) {
+		running_total=(running_total*i)
+		console.log(running_total);
+
+	};
+	 return running_total
+
+
+};
+
+// recursive approach
+
+var factorial = function(num) {
+	//base case
+	if (num===0){return 1};
+
+	return num * factorial(num-1);
+
+};
+
+// FIBBERS
+
+var fib = function(num) {
+	//base case
+	if (num<=1){return 1};
+    //debugger
+    //console.log(num)
+	return fib(num-2) + fib(num-1) ;
+
+
+};
+
+
+// type thing. 
+// This took me a while and then it clicked all the sudden
+
+var type= function(val){
+      
+      var myObj={};
+      
+      var string=myObj.toString.call(val)
+      
+      //console.log(string)
+      //get rid of extra characters
+      s=string.split(" ")
+      ns=s[1].split("]")
+      
+      return ns[0]
+     
+  };
+
+// Stringify
+
+ var stringify = function(val) {
+      
+      val_type=type(val);
+      
+      result=""
+      result_arr=[];
+      
+      str_types=['Undefined','Null','Boolean','Number','Function'];
+      
+      debugger
+      if (str_types.indexOf(val_type) > -1){ // check if type is in arr str_types
+          
+          result+=String(val)
+          console.log(result)
+
+          //result_arr.push(String(val))
+          //return result
+          
+      }
+      if (val_type == 'String'){
+      		result+="\""+val+"\""
+          console.log(result)
+
+          //result_arr.push(String(val));
+      		//return result
+      };// the need for this indicates something hacky happening
+      
+
+      if(val_type == 'Array'){
+
+        result+="["
+        for (var i = 0; i < val.length; i++) {
+		
+		    result+=stringify(val[i])
+        result+="],"
+        console.log(result)
+        //result_arr.push(stringify(val[i]))
+        
+        }
+        
+		//return result
+
+	};
+
+      // trusty get rid of that last comma routine
+      // this probably indicates hackiness as wekk
+       var commStrip= function(string) {
+        if (string.slice(-1)==",") {
+       string=string.substring(0, string.length - 1);
+        }
+        return string
+      };
+
+      console.log(result)
+      return commStrip(result);
+
+      //return result_arr
+      
+  };
+
